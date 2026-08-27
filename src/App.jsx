@@ -159,54 +159,164 @@ function Login({ setPage }) {
 
 // SIGN UP
 
-
 function Signup({ setPage }) {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function handleSignup(event) {
+    event.preventDefault();
+
+    setError("");
+    setLoading(true);
+
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:5000/auth/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            password: password,
+            phone_number: phoneNumber || null,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.detail || "Could not create account.");
+        return;
+      }
+
+      console.log("Account created:", data);
+
+      setPage("login");
+
+    } catch (error) {
+      console.error(error);
+      setError("Could not connect to the server.");
+
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <div className="auth-page">
       <div className="auth-card signup-card">
 
-
         <h1>Create an account</h1>
 
-        <form>
+        <form onSubmit={handleSignup}>
+
           <div className="name-row">
+
             <div>
               <label>First name</label>
-              <input type="text" placeholder="Jessica" />
+
+              <input
+                type="text"
+                placeholder="Jessica"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+              />
             </div>
 
             <div>
               <label>Last name</label>
-              <input type="text" placeholder="Smith" />
+
+              <input
+                type="text"
+                placeholder="Smith"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                required
+              />
             </div>
+
           </div>
 
           <label>Email address</label>
-          <input type="email" placeholder="you@example.com" />
+
+          <input
+            type="email"
+            placeholder="you@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
           <label>Password</label>
-          <input type="password" placeholder="Create a password" />
 
-          <label>Phone number <span>(optional)</span></label>
-          <input type="tel" placeholder="(555) 123-4567" />
+          <input
+            type="password"
+            placeholder="Create a password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-          <label>Profile picture <span>(optional)</span></label>
-          <input type="file" accept="image/*" />
+          <label>
+            Phone number <span>(optional)</span>
+          </label>
 
-          <button className="primary-button auth-submit">
-            Create Account
+          <input
+            type="tel"
+            placeholder="(555) 123-4567"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+          />
+
+          <label>
+            Profile picture <span>(optional)</span>
+          </label>
+
+          <input
+            type="file"
+            accept="image/*"
+          />
+
+          {error && (
+            <p className="error-message">
+              {error}
+            </p>
+          )}
+
+          <button
+            type="submit"
+            className="primary-button auth-submit"
+            disabled={loading}
+          >
+            {loading ? "Creating Account..." : "Create Account"}
           </button>
+
         </form>
 
         <p className="signup-text">
           Already have an account?{" "}
+
           <button
+            type="button"
             className="text-button"
             onClick={() => setPage("login")}
           >
             Log in
           </button>
         </p>
+
       </div>
     </div>
   );
