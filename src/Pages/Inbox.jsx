@@ -84,10 +84,6 @@ export default function Inbox() {
 
         <div className="empty-state">
 
-          <div className="empty-icon">
-            💌
-          </div>
-
           <h3>
             No conversations yet
           </h3>

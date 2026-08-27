@@ -12,18 +12,10 @@ export default function Home({
 
       <section className="hero">
 
-        <div className="hero-decoration decoration-one">
-          ✦
-        </div>
-
-        <div className="hero-decoration decoration-two">
-          ♡
-        </div>
-
         <div className="hero-content">
 
           <div className="hero-pill">
-            ✨ Helping things find their way home
+            Helping things find their way home
           </div>
 
 
@@ -45,7 +37,7 @@ export default function Home({
 
           {user && (
             <p className="welcome-message">
-              Welcome back, {user.first_name}! ♡
+              Welcome back, {user.first_name}!
             </p>
           )}
 
@@ -77,10 +69,6 @@ export default function Home({
             className="choice-card lost-card"
           >
 
-            <div className="choice-icon">
-              🔎
-            </div>
-
             <div className="choice-content">
 
               <span className="choice-label">
@@ -96,10 +84,6 @@ export default function Home({
                 and where you last saw it.
               </p>
 
-              <span className="choice-arrow">
-                →
-              </span>
-
             </div>
 
           </Link>
@@ -109,10 +93,6 @@ export default function Home({
             to="/report-found"
             className="choice-card found-card"
           >
-
-            <div className="choice-icon">
-              🧸
-            </div>
 
             <div className="choice-content">
 

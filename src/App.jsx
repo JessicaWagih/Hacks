@@ -19,7 +19,7 @@ function App() {
           <button onClick={() => setPage("notifications")}>
             🔔 Notifications
           </button>
-          <button onClick={() => setPage("inbox")}>💬 Inbox</button>
+          <button onClick={() => setPage("inbox")}> Inbox</button>
         </div>
 
         <button className="login-button" onClick={() => setPage("login")}>
@@ -41,16 +41,14 @@ function App() {
 }
 
 
-/* =========================
-   HOME
-========================= */
+// HOME 
 
 function Home({ setPage }) {
   return (
-    <main className="home">
+    <main className="home" >
       <section className="hero">
         <div className="hero-text">
-          <div className="welcome-pill">✨ Welcome to Lost & Found</div>
+          <div className="welcome-pill"> Welcome to Lost & Found</div>
 
           <h1>
             Lost something?
@@ -65,69 +63,47 @@ function Home({ setPage }) {
 
           <div className="home-buttons">
             <button
-              className="primary-button"
+              className="secondary-button"
               onClick={() => setPage("lost")}
             >
-              😭 I Lost Something
+              I Lost Something
             </button>
 
             <button
               className="secondary-button"
               onClick={() => setPage("found")}
             >
-              🎉 I Found Something
+              I Found Something
             </button>
           </div>
         </div>
 
-        <div className="hero-card">
-          <div className="floating-card card-one">
-            🎧
-            <div>
-              <strong>AirPods</strong>
-              <small>Possible match!</small>
-            </div>
-          </div>
-
-          <div className="main-heart">💗</div>
-
-          <div className="floating-card card-two">
-            📱
-            <div>
-              <strong>iPhone</strong>
-              <small>Found nearby</small>
-            </div>
-          </div>
-        </div>
+        
       </section>
 
       <section className="how-section">
-        <h2>How it works 💕</h2>
+        <h2>How it works</h2>
         <p className="section-subtitle">
           Getting your stuff back is easier than ever.
         </p>
 
         <div className="steps">
           <div className="step">
-            <div className="step-icon">📝</div>
             <h3>Report it</h3>
             <p>Tell us what you lost or found.</p>
           </div>
 
           <div className="step">
-            <div className="step-icon">🗺️</div>
             <h3>Pick a location</h3>
             <p>Choose the location directly on the map.</p>
           </div>
 
           <div className="step">
-            <div className="step-icon">✨</div>
             <h3>Get matched</h3>
             <p>Our system looks for possible matches.</p>
           </div>
 
           <div className="step">
-            <div className="step-icon">💬</div>
             <h3>Chat safely</h3>
             <p>Connect without sharing your phone number.</p>
           </div>
@@ -138,9 +114,8 @@ function Home({ setPage }) {
 }
 
 
-/* =========================
-   LOGIN
-========================= */
+// LOGIN
+
 
 function Login({ setPage }) {
   return (
@@ -182,18 +157,16 @@ function Login({ setPage }) {
 }
 
 
-/* =========================
-   SIGN UP
-========================= */
+// SIGN UP
+
 
 function Signup({ setPage }) {
   return (
     <div className="auth-page">
       <div className="auth-card signup-card">
-        <div className="auth-icon">💗</div>
+
 
         <h1>Create an account</h1>
-        <p>It only takes a minute!</p>
 
         <form>
           <div className="name-row">
@@ -240,9 +213,8 @@ function Signup({ setPage }) {
 }
 
 
-/* =========================
-   PROFILE
-========================= */
+// PROFILE
+
 
 function Profile() {
   return (
@@ -270,9 +242,8 @@ function Profile() {
 }
 
 
-/* =========================
-   NOTIFICATIONS
-========================= */
+// NOTIFICATIONS
+
 
 function Notifications() {
   return (
@@ -286,14 +257,11 @@ function Notifications() {
       </div>
 
       <div className="notification-card">
-        <div className="notification-icon">🎉</div>
         <div>
-          <strong>Welcome to Lost & Found!</strong>
           <p>
             You'll receive a notification when someone reports a
             possible match.
           </p>
-          <small>Just now</small>
         </div>
       </div>
     </main>
@@ -301,45 +269,37 @@ function Notifications() {
 }
 
 
-/* =========================
-   INBOX
-========================= */
+// INBOX
+
 
 function Inbox() {
   return (
     <main className="simple-page">
       <div className="page-header">
-        <span>💬</span>
         <div>
           <h1>Inbox</h1>
-          <p>Chat privately with people you've been matched with.</p>
         </div>
       </div>
 
       <div className="empty-state">
         <div>💬</div>
         <h2>No conversations yet</h2>
-        <p>
-          When there's a match, your conversation will appear here.
-        </p>
       </div>
     </main>
   );
 }
 
 
-/* =========================
-   REPORT LOST
-========================= */
+// REPORT LOST
+
 
 function ReportLost() {
   return (
     <main className="report-page">
       <div className="report-header">
-        <span>😭</span>
         <div>
           <h1>Report a Lost Item</h1>
-          <p>Don't worry — let's help you find it.</p>
+          <p>Let's help you find it.</p>
         </div>
       </div>
 
@@ -359,9 +319,7 @@ function ReportLost() {
         <label>Where did you lose it?</label>
 
         <div className="map-placeholder">
-          🗺️
           <strong>Map goes here</strong>
-          <span>You'll be able to pick a location on the map.</span>
         </div>
 
         <button className="location-button">
@@ -380,15 +338,13 @@ function ReportLost() {
 }
 
 
-/* =========================
-   REPORT FOUND
-========================= */
+// REPORT FOUND
+
 
 function ReportFound() {
   return (
     <main className="report-page">
       <div className="report-header">
-        <span>🎉</span>
         <div>
           <h1>Report a Found Item</h1>
           <p>Let's help get this item back to its owner.</p>
@@ -411,9 +367,7 @@ function ReportFound() {
         <label>Where did you find it?</label>
 
         <div className="map-placeholder">
-          🗺️
           <strong>Map goes here</strong>
-          <span>You'll be able to pick a location on the map.</span>
         </div>
 
         <button className="location-button">

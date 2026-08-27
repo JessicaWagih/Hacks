@@ -88,9 +88,6 @@ export default function Signup() {
 
       <div className="auth-card signup-card">
 
-        <div className="auth-logo">
-          ✨
-        </div>
 
 
         <div className="auth-heading">
