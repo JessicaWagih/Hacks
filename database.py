@@ -28,9 +28,8 @@ SessionLocal = sessionmaker(
 Base = declarative_base()
 
 
-# ============================================================
 # USERS
-# ============================================================
+
 
 class User(Base):
     __tablename__ = "users"
@@ -67,9 +66,7 @@ class User(Base):
     )
 
 
-# ============================================================
 # LOST ITEMS
-# ============================================================
 
 class LostItem(Base):
     __tablename__ = "lost_items"
@@ -84,10 +81,8 @@ class LostItem(Base):
 
     description = Column(Text, nullable=False)
 
-    # Human-readable place
     location = Column(String(500), nullable=False)
 
-    # Geographic location
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
 
@@ -103,11 +98,11 @@ class LostItem(Base):
     location_email = Column(String(255), nullable=True)
     location_website = Column(String(500), nullable=True)
 
-    # Separate date/time
+    #date/time
     lost_date = Column(String(20), nullable=False)
     lost_time = Column(String(20), nullable=False)
 
-    photo_path = Column(String(500), nullable=True)
+    photo_path = Column(String(500), nullable=True) # not mandatory for lost items
 
     created_at = Column(DateTime, nullable=False)
 
@@ -123,9 +118,8 @@ class LostItem(Base):
     )
 
 
-# ============================================================
 # FOUND ITEMS
-# ============================================================
+
 
 class FoundItem(Base):
     __tablename__ = "found_items"
@@ -157,7 +151,7 @@ class FoundItem(Base):
     found_date = Column(String(20), nullable=False)
     found_time = Column(String(20), nullable=False)
 
-    photo_path = Column(String(500), nullable=False)
+    photo_path = Column(String(500), nullable=False) # Mandatory for found items
 
     created_at = Column(DateTime, nullable=False)
 
@@ -173,9 +167,8 @@ class FoundItem(Base):
     )
 
 
-# ============================================================
-# MATCHES
-# ============================================================
+#  MATCHES
+
 
 class Match(Base):
     __tablename__ = "matches"
@@ -235,9 +228,7 @@ class Match(Base):
     )
 
 
-# ============================================================
 # CHAT MESSAGES
-# ============================================================
 
 class ChatMessage(Base):
     __tablename__ = "chat_messages"
@@ -266,9 +257,8 @@ class ChatMessage(Base):
     )
 
 
-# ============================================================
 # NOTIFICATIONS
-# ============================================================
+
 
 class Notification(Base):
     __tablename__ = "notifications"
@@ -324,9 +314,8 @@ class Notification(Base):
     )
 
 
-# ============================================================
 # CONTACT SHARING
-# ============================================================
+
 
 class ContactShare(Base):
     __tablename__ = "contact_shares"
@@ -351,35 +340,8 @@ class ContactShare(Base):
     )
 
 
-# ============================================================
-# FALLBACK LOCATION CONTACTS
-# ============================================================
 
-LOCATION_CONTACTS = {
-    "library": {
-        "name": "Campus Library Front Desk",
-        "phone": "555-0100",
-        "email": "library@school.edu",
-        "website": None,
-    },
-    "gym": {
-        "name": "Athletic Center Office",
-        "phone": "555-0101",
-        "email": "gym@school.edu",
-        "website": None,
-    },
-    "cafeteria": {
-        "name": "Dining Services",
-        "phone": "555-0102",
-        "email": "dining@school.edu",
-        "website": None,
-    },
-}
-
-
-# ============================================================
 # DATABASE
-# ============================================================
 
 def init_db():
     Base.metadata.create_all(bind=engine)

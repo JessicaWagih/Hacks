@@ -4,9 +4,7 @@ from typing import Optional, List
 from pydantic import BaseModel, EmailStr, ConfigDict
 
 
-# ============================================================
 # AUTH
-# ============================================================
 
 class UserCreate(BaseModel):
     first_name: str
@@ -39,9 +37,7 @@ class Token(BaseModel):
     token_type: str
 
 
-# ============================================================
 # LOCATION
-# ============================================================
 
 class LocationInfo(BaseModel):
     location: str
@@ -58,9 +54,9 @@ class LocationInfo(BaseModel):
     location_website: Optional[str] = None
 
 
-# ============================================================
+
+
 # LOST ITEM
-# ============================================================
 
 class LostItemOut(BaseModel):
     id: int
@@ -91,9 +87,8 @@ class LostItemOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
-# ============================================================
+
 # FOUND ITEM
-# ============================================================
 
 class FoundItemOut(BaseModel):
     id: int
@@ -124,9 +119,8 @@ class FoundItemOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
-# ============================================================
+
 # MATCH
-# ============================================================
 
 class MatchOut(BaseModel):
     id: int
@@ -143,9 +137,8 @@ class MatchOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
-# ============================================================
+
 # CHAT
-# ============================================================
 
 class ChatMessageIn(BaseModel):
     content: str
@@ -164,9 +157,8 @@ class ChatMessageOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
-# ============================================================
+
 # NOTIFICATIONS
-# ============================================================
 
 class NotificationOut(BaseModel):
     id: int
@@ -185,9 +177,8 @@ class NotificationOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
-# ============================================================
+
 # CONTACT SHARING
-# ============================================================
 
 class ContactShareOut(BaseModel):
     shared: bool

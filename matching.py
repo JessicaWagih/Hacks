@@ -16,9 +16,7 @@ DATE_WINDOW_DAYS = 7
 MAX_LOCATION_DISTANCE_KM = 5.0
 
 
-# ============================================================
 # DESCRIPTION
-# ============================================================
 
 def text_similarity(a: str, b: str) -> float:
     if not a or not b:
@@ -31,9 +29,7 @@ def text_similarity(a: str, b: str) -> float:
     ).ratio()
 
 
-# ============================================================
 # DATE/TIME
-# ============================================================
 
 def parse_datetime(date_string: str, time_string: str):
     try:
@@ -67,9 +63,9 @@ def date_similarity(
     return 1 - (diff / DATE_WINDOW_DAYS)
 
 
-# ============================================================
+
+
 # GEOGRAPHIC DISTANCE
-# ============================================================
 
 def haversine_distance_km(
     lat1,
@@ -116,7 +112,7 @@ def location_similarity(lost_item, found_item):
         found_item.longitude,
     )
 
-    # If coordinates are available, use actual distance.
+    # use actual distance If coordinates are available
     if distance is not None:
 
         if distance > MAX_LOCATION_DISTANCE_KM:
@@ -124,9 +120,7 @@ def location_similarity(lost_item, found_item):
 
         return max(
             0.0,
-            1 - (
-                distance / MAX_LOCATION_DISTANCE_KM
-            )
+            1 - ( distance / MAX_LOCATION_DISTANCE_KM )
         )
 
     # Fallback to text comparison.
@@ -136,9 +130,8 @@ def location_similarity(lost_item, found_item):
     )
 
 
-# ============================================================
+
 # MATCH SCORE
-# ============================================================
 
 def score_pair(
     lost_item,
@@ -176,9 +169,8 @@ def score_pair(
     return score
 
 
-# ============================================================
+
 # FIND MATCHES
-# ============================================================
 
 def find_matches_for_lost_item(
     lost_item,

@@ -54,9 +54,8 @@ from schemas import (
 from matching import find_matches_for_lost_item
 
 
-# ============================================================
+
 # APP
-# ============================================================
 
 app = FastAPI(
     title="Lost & Found Matcher API",
@@ -72,9 +71,8 @@ app.add_middleware(
 )
 
 
-# ============================================================
+
 # UPLOADS
-# ============================================================
 
 UPLOAD_DIR = "uploads"
 
@@ -88,6 +86,8 @@ app.mount(
     StaticFiles(directory=UPLOAD_DIR),
     name="uploads"
 )
+
+
 
 
 def save_photo(photo: UploadFile) -> str:
@@ -115,9 +115,9 @@ def save_photo(photo: UploadFile) -> str:
     return path
 
 
-# ============================================================
+
+
 # AUTH
-# ============================================================
 
 SECRET_KEY = os.getenv(
     "SECRET_KEY",
@@ -218,9 +218,8 @@ def get_current_user(
         )
 
 
-# ============================================================
+
 # STARTUP
-# ============================================================
 
 @app.on_event("startup")
 def on_startup():
@@ -228,9 +227,8 @@ def on_startup():
     init_db()
 
 
-# ============================================================
+
 # HEALTH CHECK
-# ============================================================
 
 @app.get("/")
 def root():
@@ -241,9 +239,8 @@ def root():
     }
 
 
-# ============================================================
+
 # AUTH ROUTES
-# ============================================================
 
 @app.post(
     "/auth/signup",
@@ -343,10 +340,8 @@ def get_me(
     return current_user
 
 
-# ============================================================
-# USER PROFILE
-# ============================================================
 
+# USER PROFILE
 @app.post(
     "/users/profile-picture",
     response_model=UserOut
@@ -369,9 +364,8 @@ def upload_profile_picture(
     return current_user
 
 
-# ============================================================
+
 # LOST ITEMS
-# ============================================================
 
 @app.post(
     "/items/lost",
@@ -445,9 +439,9 @@ def report_lost_item(
     db.commit()
     db.refresh(item)
 
-    # --------------------------------------------------------
+
+
     # MATCH AGAINST EXISTING FOUND ITEMS
-    # --------------------------------------------------------
 
     all_found = db.query(
         FoundItem
@@ -540,9 +534,8 @@ def report_lost_item(
     return item
 
 
-# ============================================================
+
 # FOUND ITEMS
-# ============================================================
 
 @app.post(
     "/items/found",
@@ -612,9 +605,8 @@ def report_found_item(
     db.commit()
     db.refresh(item)
 
-    # --------------------------------------------------------
+
     # MATCH AGAINST EXISTING LOST ITEMS
-    # --------------------------------------------------------
 
     all_lost = db.query(
         LostItem
@@ -709,9 +701,7 @@ def report_found_item(
     return item
 
 
-# ============================================================
 # GET USER'S LOST ITEMS
-# ============================================================
 
 @app.get(
     "/items/lost/my",
@@ -733,9 +723,8 @@ def get_my_lost_items(
     ).all()
 
 
-# ============================================================
+
 # GET USER'S FOUND ITEMS
-# ============================================================
 
 @app.get(
     "/items/found/my",
@@ -757,9 +746,8 @@ def get_my_found_items(
     ).all()
 
 
-# ============================================================
+
 # MATCHES
-# ============================================================
 
 @app.get(
     "/items/lost/{lost_item_id}/matches",
@@ -837,9 +825,8 @@ def get_my_matches(
     ).all()
 
 
-# ============================================================
+
 # LOCATION CONTACTS
-# ============================================================
 
 @app.get(
     "/locations/{location_name}/contact"
@@ -865,9 +852,8 @@ def get_location_contact(
     return contact
 
 
-# ============================================================
+
 # CHAT SECURITY
-# ============================================================
 
 def verify_match_access(
     match: Match,
@@ -888,9 +874,8 @@ def verify_match_access(
         )
 
 
-# ============================================================
+
 # SEND CHAT MESSAGE
-# ============================================================
 
 @app.post(
     "/matches/{match_id}/messages",
@@ -985,9 +970,8 @@ def send_message(
     return chat_message
 
 
-# ============================================================
+
 # GET CHAT MESSAGES
-# ============================================================
 
 @app.get(
     "/matches/{match_id}/messages",
@@ -1031,9 +1015,8 @@ def get_messages(
     ).all()
 
 
-# ============================================================
+
 # NOTIFICATIONS
-# ============================================================
 
 @app.get(
     "/notifications",
@@ -1148,9 +1131,8 @@ def mark_all_notifications_read(
     }
 
 
-# ============================================================
 # CONTACT SHARING
-# ============================================================
+
 
 @app.post(
     "/matches/{match_id}/share-contact",
@@ -1249,9 +1231,8 @@ def share_contact(
     }
 
 
-# ============================================================
+
 # VIEW OTHER USER'S SHARED CONTACT
-# ============================================================
 
 @app.get(
     "/matches/{match_id}/contact",
