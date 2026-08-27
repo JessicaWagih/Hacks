@@ -339,6 +339,9 @@ class ContactShare(Base):
         nullable=False
     )
 
+# LOCATION CONTACTS
+
+LOCATION_CONTACTS = {}
 
 
 # DATABASE
